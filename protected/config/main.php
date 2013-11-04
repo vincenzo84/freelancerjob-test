@@ -20,6 +20,10 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+                'application.modules.user.models.*',
+                'application.modules.user.components.*',
+                'application.modules.rights.*',
+                'application.modules.rights.components.*',
 	),
     
         'behaviors'=>array(
@@ -37,14 +41,23 @@ return array(
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
-		
+		'user'=>array(
+                        'tableUsers' => 'users',
+                        'tableProfiles' => 'profiles',
+                        'tableProfileFields' => 'profiles_fields',
+                ),
+                'rights'=>array(
+                        'install'=>false,
+                ),
 	),
 
 	// application components
 	'components'=>array(
 		'user'=>array(
+                        'class'=>'RWebUser',
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
+                        'loginUrl' => array('/user/login'),
 		),
                     'cache'=>array(
                     'class'=>'system.caching.CFileCache',
@@ -52,6 +65,15 @@ return array(
                 'request'=>array(
                     'enableCookieValidation'=>true,
                     'enableCsrfValidation'=>true,
+                ),
+                'session' => array (
+                    'autoStart' => true,
+                ),
+                'authManager'=>array(
+                        'class'=>'RDbAuthManager',
+                        'connectionID'=>'db',
+                        'defaultRoles'=>array('Guest'),
+                        'rightsTable' => 'rights',
                 ),
 		// uncomment the following to enable URLs in path-format
 		/*
@@ -74,7 +96,7 @@ return array(
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => '',
-			'charset' => 'utf8',
+			'charset' => 'utf8'
 		),
 		
 		'errorHandler'=>array(

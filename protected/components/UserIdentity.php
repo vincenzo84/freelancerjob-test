@@ -16,7 +16,7 @@ class UserIdentity extends CUserIdentity
 	 * @return boolean whether authentication succeeds.
 	 */
 	public function authenticate()
-	{
+	{ 
 		$users=array(
 			// username => password
 			'demo'=>'demo',
