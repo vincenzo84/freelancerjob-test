@@ -23,7 +23,7 @@ return array(
 		
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
-			'password'=>'190284',
+			'password'=>'123456',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
@@ -36,6 +36,9 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+                    'cache'=>array(
+                    'class'=>'system.caching.CFileCache',
+                ),
 		// uncomment the following to enable URLs in path-format
 		/*
 		'urlManager'=>array(
