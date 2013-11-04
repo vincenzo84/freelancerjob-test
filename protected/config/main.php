@@ -11,6 +11,7 @@ return array(
     
         //language default
         'sourceLanguage'=>'en',
+        'language' => 'it',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
