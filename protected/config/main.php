@@ -8,6 +8,9 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'freelancerjob-test',
+    
+        //language default
+        'sourceLanguage'=>'en',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -17,6 +20,12 @@ return array(
 		'application.models.*',
 		'application.components.*',
 	),
+    
+        'behaviors'=>array(
+            'onBeginRequest' => array(
+                'class' => 'application.components.behaviors.BeginRequest'
+            ),
+        ),
 
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
@@ -38,6 +47,10 @@ return array(
 		),
                     'cache'=>array(
                     'class'=>'system.caching.CFileCache',
+                ),
+                'request'=>array(
+                    'enableCookieValidation'=>true,
+                    'enableCsrfValidation'=>true,
                 ),
 		// uncomment the following to enable URLs in path-format
 		/*
@@ -89,5 +102,6 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'test@test.it',
+                'languages'=>array('it'=>'Italiano', 'en'=>'English'),
 	),
 );
